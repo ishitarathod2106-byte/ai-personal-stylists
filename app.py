@@ -74,7 +74,6 @@ def home():
 def register():
     username = request.form['username']
     password = request.form['password']
-    height = request.form['height']
     skin_img = request.files.get('skin_photo')
     
     if skin_img:
