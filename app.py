@@ -87,7 +87,7 @@ def register():
         connection = get_db_connection()
         cursor = connection.cursor()
         sql = "INSERT INTO users (username, password, skin_tone) VALUES (%s, %s, %s, %s)"
-        cursor.execute(sql, (username, password, height, user_tone))
+        cursor.execute(sql, (username, password, user_tone))
         connection.commit()
         cursor.close()
         connection.close()
