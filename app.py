@@ -7,7 +7,7 @@ from PIL import Image
 import requests
 
 app = Flask(__name__)
-app.secret_key = 'super_secret_key' 
+app.secret_key = os.environ.get('SECRET_KEY', 'fallback_secret_key')
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
@@ -17,9 +17,9 @@ def get_db_connection():
         host='mysql-38dfe19d-ishitarathod2106-26d7.h.aivencloud.com',
         port=20270,        
         user='avnadmin',
-        password=os.environ.get("AVNS_hAXVUIroJPl2VxN71v7"),
+        password=os.environ.get("AIVEN_PASSWORD"),  # <-- FIXED: Now securely pulls from Render
         database='defaultdb',
-        ssl={'ssl': {}},              # <-- Don't forget this!
+        ssl={'ssl': {}},              
         cursorclass=pymysql.cursors.DictCursor
     )
 
